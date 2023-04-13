@@ -1,4 +1,5 @@
-from keras.legacy import interfaces
+#from keras.legacy import interfaces
+import interfaces
 import keras.backend as K
 from keras.optimizers import Optimizer
 
@@ -44,7 +45,7 @@ class Modified_SGD(Optimizer):
         self.lr_multipliers = lr_multipliers
         self.momentum_multipliers = momentum_multipliers
 
-    @interfaces.legacy_get_updates_support
+    #@interfaces.legacy_get_updates_support
     def get_updates(self, loss, params):
         grads = self.get_gradients(loss, params)
         self.updates = [K.update_add(self.iterations, 1)]

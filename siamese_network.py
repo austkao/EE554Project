@@ -62,12 +62,14 @@ class SiameseNetwork:
                     L2_dictionary['dense2']=0.01
             tensorboard_log_path: path to store the logs                
         """
+        tf.compat.v1.disable_eager_execution()
         self.input_shape = (105, 105, 1)  # Size of images
         self.model = []
         self.learning_rate = learning_rate
         self.omniglot_loader = OmniglotLoader(
             dataset_path=dataset_path, use_augmentation=use_augmentation, batch_size=batch_size)
-        self.summary_writer = tf.summary.FileWriter(tensorboard_log_path)
+        #self.summary_writer = tf.summary.FileWriter(tensorboard_log_path)
+        self.summary_writer = tf.summary.create_file_writer(tensorboard_log_path)
         self._construct_siamese_architecture(learning_rate_multipliers,
                                               l2_regularization_penalization)
 
